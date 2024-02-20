@@ -1,16 +1,32 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Post from "./Post";
-import { PostList as PostListData } from "../store/post-list-store";
 import WelcomeMessage from "./WelcomeMessage";
 import { useLoaderData } from "react-router-dom";
+import Search from "./Search";
 
 const PostList = () => {
   const postList = useLoaderData();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    setPosts(postList);
+  }, []);
+
+  const searchTitle = async (title) => {
+    console.log("Postsssssssss title ", title);
+    const filterPostData = posts.filter((obj) =>
+      JSON.stringify(obj).toLowerCase().includes(title.toString().toLowerCase())
+    );
+    setPosts(filterPostData);
+  };
 
   return (
     <>
-      {postList.length === 0 && <WelcomeMessage />}
-      {postList.map((post) => (
+      <div className="search-post">
+        <Search searchTitle={searchTitle} />
+      </div>
+      {posts.length === 0 && <WelcomeMessage />}
+      {posts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
     </>

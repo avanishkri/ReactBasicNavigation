@@ -26,6 +26,14 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/search" className="nav-link text-white">
+            <svg className="bi pe-none me-2" width="16" height="16">
+              <use xlinkHref="#speedometer2"></use>
+            </svg>
+            Search
+          </Link>
+        </li>
+        <li>
           <Link to="/create-post" className="nav-link text-white">
             <svg className="bi pe-none me-2" width="16" height="16">
               <use xlinkHref="#speedometer2"></use>
